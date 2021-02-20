@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(45, 45, 45);
+    background-color: rgb(60, 60, 60);
 }
 img {
     max-width: 120px;
@@ -11,16 +11,31 @@ p {
 h3 {
     color: rgb(230,230,230);
 }
+.container {
+    background-color: rgb(45, 45, 45);
+    min-height: 937px;
+}
 .good {
     font-weight:bold;
 }
 .role {
-    color:aliceblue;
+    color:rgb(230, 230, 230);
     margin-bottom:0px;
 }
-.display-6 {
-    color:rgb(230, 230, 230);
-    margin-bottom:50px;
+.display-3 {
+    /*color:rgb(230, 230, 230);*/
+    animation: rgb 5s linear 0s infinite;
+    margin: 10px 0px 30px 0px;
+    font-style: italic;
+}
+@keyframes rgb {
+    0% {color:red;}
+    17% {color:orange;}
+    34% {color:yellow;}
+    51% {color:green;}
+    68% {color:blue;}
+    85% {color:purple;}
+    100% {color:red;}
 }
 .box {
     border: 2px solid rgb(165, 165, 165);
@@ -39,7 +54,7 @@ h3 {
     color:rgb(185, 185, 185);
 }
 .counter_header {
-    color: rgb(185, 185, 185);
+    color: rgb(92, 92, 92);
 }
 .col {
     align-items: middle;
