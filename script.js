@@ -113,7 +113,7 @@ const MID = [
     {id: "45", champ: "Veigar", role: "Zoner", h:"Poor Pick"},
     {id: "112", champ: "Viktor", role: "Zoner", h:"Good Pick"},
 ]
-const SUPPORTS = [
+const SUPPORT = [
     {id: "432", champ: "Bard", role: "Assassin", h: "Good Pick"},
     {id: "555", champ: "Pyke", role: "Assassin", h: "Poor Pick"},
     {id: "63", champ: "Brand", role: "Disuader", h: "Good Pick"},
@@ -163,104 +163,35 @@ const ADC = [
     {id:"51", champ: "Caitlyn", role: "Zoner", h:"Good Pick"},
     {id:"21", champ: "Miss Fortune", role: "Zoner", h:"Good Pick"}
 ]
+const ROLES = ["top","jungle","mid","support","adc"];
 $(function() {
     //console.log(getapi(`${url}/lol/summoner/v4/summoners/by-name/KenzoEngineer?api_key=${apiKey}`));
-    TOP.forEach(function (item){
-        $("#input_top").append(`<li><a href="#" class="dropdown-item top-item">${item.champ}</a></li>`);
-    });
-    JUNGLE.forEach(function (item){
-        $("#input_jungle").append(`<li><a href="#" class="dropdown-item jungle-item">${item.champ}</a></li>`);
-    });
-    MID.forEach(function (item){
-        $("#input_mid").append(`<li><a href="#" class="dropdown-item mid-item">${item.champ}</a></li>`);
-    });
-    SUPPORTS.forEach(function (item){
-        $("#input_support").append(`<li><a href="#" class="dropdown-item support-item">${item.champ}</a></li>`);
-    });
-    ADC.forEach(function (item){
-        $("#input_adc").append(`<li><a href="#" class="dropdown-item adc-item">${item.champ}</a></li>`);
-    });
+    for (let i = 0; i < ROLES.length; i++) {
+        let rN = ROLES[i];
 
-    sortList("input_top");
-    sortList("input_jungle");
-    sortList("input_mid");
-    sortList("input_support");
-    sortList("input_adc");
+        //alphabetical
+        sortList(`input_${rN}`);
 
-    $(".top-item").click(function () {
-        let object = search($(this).text(),"TOP");
-        $("#top_button").text($(this).text());
-        $("#role_top").text(object.role);
-        $("#good_top").text(object.h.toUpperCase());
-        if (object.h == "Good Pick") {
-            $("#good_top").css({"color":"rgb(82, 255, 111)"});
-        } else {
-            $("#good_top").css({"color":"rgb(255, 86, 86)"});
-        }
-        $("#image_top").attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
-        $("#counter_top").text(searchRole("TOP",listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
-        $("#countered_top").text(searchRole("TOP",listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
-    });
+        //append items
+        eval(rN.toUpperCase()).forEach(function (item){
+            $(`#input_${rN}`).append(`<li><a href="javascript:void(0)" class="dropdown-item ${rN}-item">${item.champ}</a></li>`);
+        });
 
-    $(".jungle-item").click(function () {
-        let object = search($(this).text(),"JUNGLE");
-        $("#jungle_button").text($(this).text());
-        $("#role_jungle").text(object.role);
-        $("#good_jungle").text(object.h.toUpperCase());
-        if (object.h == "Good Pick") {
-            $("#good_jungle").css({"color":"rgb(82, 255, 111)"});
-        } else {
-            $("#good_jungle").css({"color":"rgb(255, 86, 86)"});
-        }
-        $("#image_jungle").attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
-        $("#counter_jungle").text(searchRole("JUNGLE",listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
-        $("#countered_jungle").text(searchRole("JUNGLE",listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
-    });
-
-    $(".mid-item").click(function () {
-        let object = search($(this).text(),"MID");
-        $("#mid_button").text($(this).text());
-        $("#role_mid").text(object.role);
-        $("#good_mid").text(object.h.toUpperCase());
-        if (object.h == "Good Pick") {
-            $("#good_mid").css({"color":"rgb(82, 255, 111)"});
-        } else {
-            $("#good_mid").css({"color":"rgb(255, 86, 86)"});
-        }
-        $("#image_mid").attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
-        $("#counter_mid").text(searchRole("MID",listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
-        $("#countered_mid").text(searchRole("MID",listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
-    });
-
-    $(".support-item").click(function () {
-        let object = search($(this).text(),"SUPPORTS");
-        $("#support_button").text($(this).text());
-        $("#role_support").text(object.role);
-        $("#good_support").text(object.h.toUpperCase());
-        if (object.h == "Good Pick") {
-            $("#good_support").css({"color":"rgb(82, 255, 111)"});
-        } else {
-            $("#good_support").css({"color":"rgb(255, 86, 86)"});
-        }
-        $("#image_support").attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
-        $("#counter_support").text(searchRole("SUPPORTS",listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
-        $("#countered_support").text(searchRole("SUPPORTS",listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
-    });
-
-    $(".adc-item").click(function () {
-        let object = search($(this).text(),"ADC");
-        $("#adc_button").text($(this).text());
-        $("#role_adc").text(object.role);
-        $("#good_adc").text(object.h.toUpperCase());
-        if (object.h == "Good Pick") {
-            $("#good_adc").css({"color":"rgb(82, 255, 111)"});
-        } else {
-            $("#good_adc").css({"color":"rgb(255, 86, 86)"});
-        }
-        $("#image_adc").attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
-        $("#counter_adc").text(searchRole("ADC",listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
-        $("#countered_adc").text(searchRole("ADC",listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
-    });
+        $(`.${ROLES[i]}-item`).click(function () {
+            let object = search($(this).text(),rN.toUpperCase());
+            $(`#${rN}_button`).text($(this).text());
+            $(`#role_${rN}`).text(object.role);
+            $(`#good_${rN}`).text(object.h.toUpperCase());
+            if (object.h == "Good Pick") {
+                $(`#good_${rN}`).css({"color":"rgb(82, 255, 111)"});
+            } else {
+                $(`#good_${rN}`).css({"color":"rgb(255, 86, 86)"});
+            }
+            $(`#image_${rN}`).attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
+            $(`#counter_${rN}`).text(searchRole(rN.toUpperCase(),listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
+            $(`#countered_${rN}`).text(searchRole(rN.toUpperCase(),listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
+        });
+    }
 });
 function search(champ, role) {
     let found;
