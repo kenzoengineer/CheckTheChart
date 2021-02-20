@@ -299,8 +299,8 @@ function listCounters(role) {
             return ["Engager","Assassin","Disuader","Zoner"];
         case "Assassin":
             return ["Engager","Disuader","Poker","Zoner"];
-        case "Seige":
-            return ["N/A","","Disuaders","Engage"];
+        case "Siege":
+            return ["N/A","","Disuader","Engage"];
         case "Split Push":
             return ["N/A","","Good at side pressure",""];
         case "Early Pressure":

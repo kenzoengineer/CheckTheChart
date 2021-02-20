@@ -16,13 +16,11 @@ h3 {
 }
 .role {
     color:aliceblue;
+    margin-bottom:0px;
 }
 .display-6 {
     color:rgb(230, 230, 230);
     margin-bottom:50px;
-}
-.role {
-    margin-bottom:0px;
 }
 .box {
     border: 2px solid rgb(165, 165, 165);
@@ -42,4 +40,8 @@ h3 {
 }
 .counter_header {
     color: rgb(185, 185, 185);
+}
+.col {
+    align-items: middle;
+    display: flex;
 }
