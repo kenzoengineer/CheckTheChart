@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS and JS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="EasyAutocomplete-1.3.5/easy-autocomplete.min.css">
+    <link rel="stylesheet" href="style.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-    <script src="EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script>
-
-    <script type="text/javascript" src="champions.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript" src="config.js"></script>
     <script src="script.js"></script>
     <title>Hello, world!</title>
@@ -25,18 +22,33 @@
   <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-sm-12">
                 <h1 class="display-6 text-center">Just check the chart.</h1>
             </div>
-        </row>
+          </div>
         <div class="row">
-          <div class="col-lg-6">
-            <form>
-              <div class="autocomplete" style="width:300px;">
-                <input id="myInput" placeholder="Champion"/>
-              </div>
-              <input type="submit">
-            </form>
+          <div class="col-sm-4 box">
+            <div class="col">
+                <div class="Support">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="support_button" aria-haspopup="true" aria-expanded="false">
+                      Choose Support
+                    </button>
+                    <ul class="dropdown-menu" id="input_support" aria-labelledby="ddmButton"></ul> 
+                  </div>
+                  <h4 class="role" id="role_support"></h4>
+                  <h5 class="good" id="good_support"></h5>
+                </div>
+            </div>
+            <div class="col">
+                <img id="image_support" class="img-fluid" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h3>They counter: </h1>
+              <p>Other black ppl</p>
+            <h3>Countered by: </h1>
+              <p>Society, police, knees</p>
           </div>
         </div>
     </div>
