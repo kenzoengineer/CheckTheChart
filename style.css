@@ -31,4 +31,15 @@ h3 {
     background-color:rgb(92, 92, 92);
     display:flex;
     flex-direction:row;
+    margin: 2px 0px;
+}
+.vert {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    padding:5px;
+    text-align:center;
+    color:rgb(185, 185, 185);
+}
+.counter_header {
+    color: rgb(185, 185, 185);
 }

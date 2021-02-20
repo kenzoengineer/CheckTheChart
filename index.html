@@ -26,13 +26,44 @@
                 <h1 class="display-6 text-center">Just check the chart.</h1>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-1 vert">
+              <h1>TOP</h1>
+            </div>
+            <div class="col-sm-4 box">
+              <div class="col">
+                  <div class="Top">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="top_button" aria-haspopup="true" aria-expanded="false">
+                        Top
+                      </button>
+                      <ul class="dropdown-menu" id="input_top" aria-labelledby="ddmButton"></ul> 
+                    </div>
+                    <h4 class="role" id="role_top"></h4>
+                    <h5 class="good" id="good_top"></h5>
+                  </div>
+              </div>
+              <div class="col">
+                  <img id="image_top" class="img-fluid" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h3 class="counter_header">They counter: </h1>
+                <p id="counter_top"></p>
+              <h3 class="counter_header">Countered by: </h1>
+                <p id="countered_top"></p>
+            </div>
+          </div>
         <div class="row">
+          <div class="col-sm-1 vert">
+            <h1>SUPPORT</h1>
+          </div>
           <div class="col-sm-4 box">
             <div class="col">
                 <div class="Support">
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="support_button" aria-haspopup="true" aria-expanded="false">
-                      Choose Support
+                      Support
                     </button>
                     <ul class="dropdown-menu" id="input_support" aria-labelledby="ddmButton"></ul> 
                   </div>
@@ -45,10 +76,10 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <h3>They counter: </h1>
-              <p>Other black ppl</p>
-            <h3>Countered by: </h1>
-              <p>Society, police, knees</p>
+            <h3 class="counter_header">They counter: </h1>
+              <p id="counter_support"></p>
+            <h3 class="counter_header">Countered by: </h1>
+              <p id="countered_support"></p>
           </div>
         </div>
     </div>
