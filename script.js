@@ -164,19 +164,46 @@ const ADC = [
     {id:"21", champ: "Miss Fortune", role: "Zoner", h:"Good Pick"}
 ]
 const ROLES = ["top","jungle","mid","support","adc"];
+
 $(function() {
     //console.log(getapi(`${url}/lol/summoner/v4/summoners/by-name/KenzoEngineer?api_key=${apiKey}`));
     for (let i = 0; i < ROLES.length; i++) {
         let rN = ROLES[i];
+        
+        //generation of html
+        $(".left_panel").append(`<div id="row-${rN}" class="row"></div>`);
+        $(`#row-${rN}`).append(`<div class="col-sm-1 vert"><h1>${rN.toUpperCase()}</h1></div>`);
+        $(`#row-${rN}`).append(
+            `<div class="col-sm-5 box">
+             <div class="col"><div id="${rN}"></div></div>
+             <div class="col">
+             <img id="image_${rN}" class="img-fluid rounded" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png"></div>
+             </div>`
+        );
+        $(`#${rN}`).append(
+            `<div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="${rN}_button"
+              aria-haspopup="true" aria-expanded="false">
+              ${"Select"}
+            </button>
+            <ul class="dropdown-menu" id="input_${rN}" aria-labelledby="${rN}_button"></ul>
+            </div>`
+        );
+        $(`#${rN}`).append(`<h4 class="role" id="role_${rN}"></h4>`);
+        $(`#${rN}`).append(`<h5 class="good" id="good_${rN}"></h5>`);
+        $(`#row-${rN}`).append(`<div id="count_div_${rN}" class="col-sm-6"></div>`);
+        $(`#count_div_${rN}`).append(`<h3 class="counter_header">Beats: </h3>`);
+        $(`#count_div_${rN}`).append(`<p id="counter_${rN}"></p>`);
+        $(`#count_div_${rN}`).append(`<h3 class="counter_header">Loses to: </h3>`);
+        $(`#count_div_${rN}`).append(`<p id="countered_${rN}"></p>`);
 
         //alphabetical
         sortList(`input_${rN}`);
-
         //append items
         eval(rN.toUpperCase()).forEach(function (item){
             $(`#input_${rN}`).append(`<li><a href="javascript:void(0)" class="dropdown-item ${rN}-item">${item.champ}</a></li>`);
         });
-
+        //bind click listeners
         $(`.${ROLES[i]}-item`).click(function () {
             let object = search($(this).text(),rN.toUpperCase());
             $(`#${rN}_button`).text($(this).text());
@@ -193,14 +220,17 @@ $(function() {
         });
     }
 });
+
+//find champion by name with role
 function search(champ, role) {
-    let found;
     for (let i = 0; i < eval(role).length; i++) {
         if (eval(role)[i].champ === champ) {
             return {role: eval(role)[i].role, h: eval(role)[i].h, id: eval(role)[i].id};
         }
     }
 }
+
+//find all champions which satisfy role1 or role2 in lane l
 function searchRole(l, role1, role2) {
     let arr = [role1, role2];
     let output = [];
@@ -211,13 +241,16 @@ function searchRole(l, role1, role2) {
     }
     return output;
 }
+
+//sorts dropdown list
 function sortList(ul) {
     var ul = document.getElementById(ul);
-  
-    Array.from(ul.getElementsByTagName("LI"))
+    Array.from(ul.getElementsByTagName("li"))
       .sort((a, b) => a.textContent.localeCompare(b.textContent))
       .forEach(li => ul.appendChild(li));
 }
+
+//outputs counters for each role
 function listCounters(role) {
     switch (role) {
         case "Engager":
@@ -231,13 +264,15 @@ function listCounters(role) {
         case "Assassin":
             return ["Engager","Disuader","Poker","Zoner"];
         case "Siege":
-            return ["N/A","","Disuader","Engage"];
+            return ["","","Disuader","Engage"];
         case "Split Push":
-            return ["N/A","","Good at side pressure",""];
+            return ["","","",""];
         case "Early Pressure":
-            return ["Anyone who outscales","","Can build early lead",""];
+            return ["","","",""];
     }
 }
+
+//get league api data
 async function getapi(url) {
     const response = await fetch(url);
     let data = await response.json();

@@ -1,202 +1,64 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS and JS-->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="style.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="config.js"></script>
   <script src="script.js"></script>
   <title>Check The Chart</title>
 </head>
-
 <body>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12 page_header">
+    <div class="row page_header align-items-center">
+      <div class="col-sm-2">
+        <div class="social_links">
+          <div>
+            <a class="header_link" href="https://github.com/kenzoengineer" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+          </div>
+          <div>
+            <a class="header_link" href="https://linkedin.com/in/ken-jiang" target="_blank">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
         <h1 class="display-3 text-center">Check The Chart</h1>
+      </div>
+      <div class="col-sm-2">
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-1 vert">
-            <h1>TOP</h1>
-          </div>
-          <div class="col-sm-5 box">
-            <div class="col">
-              <div class="Top">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="top_button"
-                    aria-haspopup="true" aria-expanded="false">
-                    Top
-                  </button>
-                  <ul class="dropdown-menu" id="input_top" aria-labelledby="ddmButton"></ul>
-                </div>
-                <h4 class="role" id="role_top"></h4>
-                <h5 class="good" id="good_top"></h5>
-              </div>
-            </div>
-            <div class="col">
-              <img id="image_top" class="img-fluid rounded"
-                src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="counter_header">Beats: </h1>
-              <p id="counter_top"></p>
-              <h3 class="counter_header">Loses to: </h1>
-                <p id="countered_top"></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-1 vert">
-            <h1>JGL</h1>
-          </div>
-          <div class="col-sm-5 box">
-            <div class="col">
-              <div class="Jungle">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                    id="jungle_button" aria-haspopup="true" aria-expanded="false">
-                    Jungle
-                  </button>
-                  <ul class="dropdown-menu" id="input_jungle" aria-labelledby="ddmButton"></ul>
-                </div>
-                <h4 class="role" id="role_jungle"></h4>
-                <h5 class="good" id="good_jungle"></h5>
-              </div>
-            </div>
-            <div class="col">
-              <img id="image_jungle" class="img-fluid rounded"
-                src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="counter_header">Beats: </h1>
-              <p id="counter_jungle"></p>
-              <h3 class="counter_header">Loses to: </h1>
-                <p id="countered_jungle"></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-1 vert">
-            <h1>MID</h1>
-          </div>
-          <div class="col-sm-5 box">
-            <div class="col">
-              <div class="Mid">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="mid_button"
-                    aria-haspopup="true" aria-expanded="false">
-                    Mid
-                  </button>
-                  <ul class="dropdown-menu" id="input_mid" aria-labelledby="ddmButton"></ul>
-                </div>
-                <h4 class="role" id="role_mid"></h4>
-                <h5 class="good" id="good_mid"></h5>
-              </div>
-            </div>
-            <div class="col">
-              <img id="image_mid" class="img-fluid rounded"
-                src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="counter_header">Beats: </h1>
-              <p id="counter_mid"></p>
-              <h3 class="counter_header">Loses to: </h1>
-                <p id="countered_mid"></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-1 vert">
-            <h1>SUPP</h1>
-          </div>
-          <div class="col-sm-5 box">
-            <div class="col">
-              <div class="Support">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                    id="support_button" aria-haspopup="true" aria-expanded="false">
-                    Support
-                  </button>
-                  <ul class="dropdown-menu" id="input_support" aria-labelledby="ddmButton"></ul>
-                </div>
-                <h4 class="role" id="role_support"></h4>
-                <h5 class="good" id="good_support"></h5>
-              </div>
-            </div>
-            <div class="col">
-              <img id="image_support" class="img-fluid rounded"
-                src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="counter_header">Beats: </h1>
-              <p id="counter_support"></p>
-              <h3 class="counter_header">Loses to: </h1>
-                <p id="countered_support"></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-1 vert">
-            <h1>ADC</h1>
-          </div>
-          <div class="col-sm-5 box">
-            <div class="col">
-              <div class="Adc">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="adc_button"
-                    aria-haspopup="true" aria-expanded="false">
-                    ADC
-                  </button>
-                  <ul class="dropdown-menu" id="input_adc" aria-labelledby="ddmButton"></ul>
-                </div>
-                <h4 class="role" id="role_adc"></h4>
-                <h5 class="good" id="good_adc"></h5>
-              </div>
-            </div>
-            <div class="col">
-              <img id="image_adc" class="img-fluid rounded"
-                src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="counter_header">Beats: </h1>
-              <p id="counter_adc"></p>
-              <h3 class="counter_header">Loses to: </h1>
-                <p id="countered_adc"></p>
-          </div>
-        </div>
+      <div class="left_panel col-sm-7">
       </div>
-      <div class="col-sm-6">
+      <div class="right_panel col-sm-5">
         <div class="row">
           <div class="col-sm-6">
-            <img class="chart_img" src="chart.png">
+            <h3>
+              Notes:
+            </h3>
+            <ul class="list-group">
+              <li class="list-group-item">Siege is good against disuaders and towers. They also perform well against engage provided engage can be zoned from siegers.</li>
+              <li class="list-group-item">Split pushers are rather useless in teamfights. Their strength is in </li>
+            </ul>
           </div>
-          <div class="col-sm-5 box">
+          <div class="col-sm-6">
             <img class="chart_img" src="chart.png">
           </div>
         </div>
         <div class="row">
-
+            <h1>helo</h1>
         </div>
       </div>
     </div>
