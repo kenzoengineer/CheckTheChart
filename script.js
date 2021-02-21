@@ -165,14 +165,24 @@ const ADC = [
 ]
 const ROLES = ["top","jungle","mid","support","adc"];
 
+let issues = [
+    {id: "top", text: "Consider an alternate pick for top", a: false},
+    {id: "jungle", text: "Consider an alternate pick for jungle", a: false},
+    {id: "mid", text: "Consider an alternate pick for mid", a: false},
+    {id: "support", text: "Consider an alternate pick for support", a: false},
+    {id: "adc", text: "Consider an alternate pick for ADC", a: false},
+];
+
 $(function() {
     //console.log(getapi(`${url}/lol/summoner/v4/summoners/by-name/KenzoEngineer?api_key=${apiKey}`));
     for (let i = 0; i < ROLES.length; i++) {
         let rN = ROLES[i];
-        
+        let sh = rN;
+        sh = (rN === "jungle") ? "jgl" : sh;
+        sh = (rN === "support") ? "sup" : sh;
         //generation of html
         $(".left_panel").append(`<div id="row-${rN}" class="row"></div>`);
-        $(`#row-${rN}`).append(`<div class="col-sm-1 vert"><h1>${rN.toUpperCase()}</h1></div>`);
+        $(`#row-${rN}`).append(`<div class="col-sm-1 vert"><h1>${sh.toUpperCase()}</h1></div>`);
         $(`#row-${rN}`).append(
             `<div class="col-sm-5 box">
              <div class="col"><div id="${rN}"></div></div>
@@ -197,12 +207,12 @@ $(function() {
         $(`#count_div_${rN}`).append(`<h3 class="counter_header">Loses to: </h3>`);
         $(`#count_div_${rN}`).append(`<p id="countered_${rN}"></p>`);
 
-        //alphabetical
-        sortList(`input_${rN}`);
         //append items
         eval(rN.toUpperCase()).forEach(function (item){
             $(`#input_${rN}`).append(`<li><a href="javascript:void(0)" class="dropdown-item ${rN}-item">${item.champ}</a></li>`);
         });
+        //sort alphabetically
+        sortList(`input_${rN}`);
         //bind click listeners
         $(`.${ROLES[i]}-item`).click(function () {
             let object = search($(this).text(),rN.toUpperCase());
@@ -211,12 +221,23 @@ $(function() {
             $(`#good_${rN}`).text(object.h.toUpperCase());
             if (object.h == "Good Pick") {
                 $(`#good_${rN}`).css({"color":"rgb(82, 255, 111)"});
+                issues[getIndex(rN)].a = false;
             } else {
                 $(`#good_${rN}`).css({"color":"rgb(255, 86, 86)"});
+                issues[getIndex(rN)].a = true;
             }
             $(`#image_${rN}`).attr("src",`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${object.id}.png`);
             $(`#counter_${rN}`).text(searchRole(rN.toUpperCase(),listCounters(object.role)[2],listCounters(object.role)[3]).sort().join(", "));
             $(`#countered_${rN}`).text(searchRole(rN.toUpperCase(),listCounters(object.role)[0],listCounters(object.role)[1]).sort().join(", "));
+
+            if (object.h !== "Good Pick") issues.push(`Consider an alternate pick for ${rN}`);
+
+            $("#issue-list").empty();
+            for (let i = 0; i < issues.length; i++) {
+                if (issues[i].a === true) {
+                    $("#issue-list").append(`<li class="list-group-item">${issues[i].text}</li>`);
+                }
+            }
         });
     }
 });
@@ -245,9 +266,16 @@ function searchRole(l, role1, role2) {
 //sorts dropdown list
 function sortList(ul) {
     var ul = document.getElementById(ul);
-    Array.from(ul.getElementsByTagName("li"))
+    console.log(ul);
+    Array.from(ul.getElementsByTagName("LI"))
       .sort((a, b) => a.textContent.localeCompare(b.textContent))
       .forEach(li => ul.appendChild(li));
+}
+
+function getIndex(r) {
+    for (let i = 0; i < issues.length; i++) {
+        if (issues[i].id === r) return i;
+    }
 }
 
 //outputs counters for each role
