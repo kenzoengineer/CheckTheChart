@@ -196,7 +196,7 @@ $(function() {
               aria-haspopup="true" aria-expanded="false">
               ${"Select"}
             </button>
-            <ul class="dropdown-menu" id="input_${rN}" aria-labelledby="${rN}_button"></ul>
+            <ul style="z-index: 1;" class="dropdown-menu" id="input_${rN}" aria-labelledby="${rN}_button"></ul>
             </div>`
         );
         $(`#${rN}`).append(`<h4 class="role" id="role_${rN}"></h4>`);
@@ -240,6 +240,31 @@ $(function() {
             }
         });
     }
+
+    let m = {x: 0, y: 0};
+    $(document).mousemove(function (event) {
+        m.x = event.pageX;
+        m.y = event.pageY;
+        $("#cursor").css("transform",`translate(${0 + m.x - 4}px,${15 + m.y - 17}px)`);
+    });
+
+    $(document).mousedown(function () {
+        $("#cursor").attr("src","img/cursor-clicked.png");
+    });
+    $(document).mouseup(function () {
+        $("#cursor").attr("src","img/cursor.png");
+    });
+    $(".btn").hover(function(){
+        $("#cursor").attr("src","img/cursor-hovered.png");
+    },function(){
+        $("#cursor").attr("src","img/cursor.png");
+    });
+
+    $("#isabelle").click(function () {
+        $("#vid").css("visibility","visible");
+        $("#vid").get(0).play();
+        hideVideo();
+    });
 });
 
 //find champion by name with role
@@ -306,3 +331,9 @@ async function getapi(url) {
     let data = await response.json();
     return data;
 }
+
+async function hideVideo() {
+    await delay(6800);
+    $("#vid").css("visibility","hidden");
+}
+const delay = ms => new Promise(res => setTimeout(res, ms));

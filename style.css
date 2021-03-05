@@ -1,3 +1,7 @@
+* {
+    cursor: none!important;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -100,4 +104,16 @@ h3 {
 .list-group-item {
     background-color: rgb(45,45,45);
     color:rgb(185, 185, 185);
+}
+#vid {
+    visibility: hidden;
+    z-index:99;
+    transform:translate(300px,-950px);
+}
+#cursor {
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    z-index: 100;
+    pointer-events: none;
 }
