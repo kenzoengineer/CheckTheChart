@@ -245,7 +245,7 @@ $(function() {
     $(document).mousemove(function (event) {
         m.x = event.pageX;
         m.y = event.pageY;
-        $("#cursor").css("transform",`translate(${0 + m.x - 4}px,${15 + m.y - 17}px)`);
+        $("#cursor").css("transform",`translate(${0 + m.x - 4}px,${15 + m.y - 17 - window.scrollY}px)`);
     });
 
     $(document).mousedown(function () {
